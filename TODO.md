@@ -12,6 +12,8 @@ Project Description
 
 ### Done ✓
 
+- [x] implement greet in pas  
+- [x] implement userSignIn in pas  
 - [x] create signup mutation  
 - [x] add sql datasource  
 - [x] create a sqlite database  

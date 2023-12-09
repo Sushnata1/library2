@@ -14,7 +14,7 @@ import pasDataSource from "./dataSources/pasDataSource.js";
 const knexConfig = {
   client: "sqlite3",
   connection: {
-    filename:"./dataSources/library2db.db"
+    filename:process.env.DB_FILENAME
   },
   useNullAsDefault: true
 };
