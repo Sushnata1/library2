@@ -12,6 +12,10 @@ Project Description
 
 ### Done ✓
 
+- [x] create signup mutation  
+- [x] add sql datasource  
+- [x] create a sqlite database  
+- [x] create users query  
 - [x] User login mock  
 - [x] Mock and Pas DataSource  
 - [x] Project initialization  

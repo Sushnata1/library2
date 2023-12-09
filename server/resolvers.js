@@ -1,20 +1,21 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-import mockDataSource from "./dataSources/mockDataSource.js";
-import pasDataSource from "./dataSources/pasDataSource.js";
-
-var obj = (process.env.DATASOURCE=="MOCK") ? new mockDataSource() : new pasDataSource();
-
 export default {
     Query:{
-        greet: (_,__,{emailId}) => {
-            return obj.greet(emailId);
+        greet: (_, __, { emailId, dataSources }) => {
+            return dataSources.greet(emailId);
+        },
+        users: (_,__,{dataSources}) => {
+            return dataSources.getUsers();
         }
     },
     Mutation: {
-        userSignIn: (_,{input}) => {
-            return obj.userSignIn(input);
+        userSignIn: (_,{input},{dataSources}) => {
+            return dataSources.userSignIn(input);
+        },
+        userSignUp: (_, { input }, { dataSources }) => {
+            return dataSources.userSignUp(input);
         }
     }
 }

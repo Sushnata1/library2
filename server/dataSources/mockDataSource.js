@@ -13,7 +13,6 @@ export default class {
     }]
 
     greet(emailId) {
-        console.log(emailId);
         var user = this.users.find((u) => u.emailId == emailId );
         return "Hello " + user.name;
     }
@@ -28,5 +27,9 @@ export default class {
         else {
             throw new Error("emailId or password is incorrect");
         }
+    }
+
+    async getUsers() {
+        return this.users;
     }
 }

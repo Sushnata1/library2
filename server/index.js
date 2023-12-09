@@ -8,6 +8,17 @@ dotenv.config();
 import typeDefs from "./schema.js";
 import resolvers from "./resolvers.js";
 
+import mockDataSource from "./dataSources/mockDataSource.js";
+import pasDataSource from "./dataSources/pasDataSource.js";
+
+const knexConfig = {
+  client: "sqlite3",
+  connection: {
+    filename:"./dataSources/library2db.db"
+  },
+  useNullAsDefault: true
+};
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
@@ -17,6 +28,10 @@ const server = new ApolloServer({
       const user = jwt.verify(authorization, process.env.JWT_SECRET);
       return user;
     }
+  },
+  dataSources: () => {
+    var obj = (process.env.DATASOURCE == "MOCK") ? new mockDataSource() : new pasDataSource(knexConfig);
+    return obj;
   },
   plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
 });
