@@ -12,12 +12,14 @@ input UserInput{
 name:String
 emailId:ID!
 password:String!
+type:String!
 }
 
 type User{
 name:String
 emailId:ID!
 password:String!
+type:String!
 }
 
 type Mutation{

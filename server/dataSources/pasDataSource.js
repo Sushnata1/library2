@@ -4,8 +4,11 @@ import jwt from "jsonwebtoken";
 
 export default class extends SQLDataSource {
   async greet(emailId) {
-    var user = await this.knex("users").select().where("emailId", emailId).first();
-    return "Hello " + user.name;
+    var user = await this.knex("users")
+      .select()
+      .where("emailId", emailId)
+      .first();
+    return "Hello " +user.type+", "+ user.name;
   }
   async userSignUp(input) {
     input.password = await bcrypt.hash(
@@ -29,6 +32,6 @@ export default class extends SQLDataSource {
     }
   }
   async getUsers() {
-    return await this.knex.select().from("users");
+    return await this.knex("users").select();
   }
 }

@@ -1,4 +1,3 @@
-import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 import dotenv from "dotenv";
@@ -20,6 +19,9 @@ export default class {
 
   userSignIn(input) {
     var user = this.users.find((u) => u.emailId == input.emailId);
+    if (!user) {
+      throw new Error("emailId or password is incorrect");
+    }
     var isPassWordCorrect = input.password == user.password;
     if (isPassWordCorrect) {
       var token = jwt.sign(user, process.env.JWT_SECRET);

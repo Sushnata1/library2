@@ -6,12 +6,15 @@ Project Description
 
 ### Todo
 
+- [ ] change to typescript  
+- [ ] change the database to postgres  
 
 ### In Progress
 
 
 ### Done ✓
 
+- [x] create a user type  
 - [x] implement greet in pas  
 - [x] implement userSignIn in pas  
 - [x] create signup mutation  
