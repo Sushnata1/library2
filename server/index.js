@@ -19,6 +19,8 @@ const knexConfig = {
   useNullAsDefault: true
 };
 
+var datasourceObj = (process.env.DATASOURCE == "MOCK") ? new mockDataSource() : new pasDataSource(knexConfig);
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
@@ -26,13 +28,10 @@ const server = new ApolloServer({
     let {authorization} = req.headers;
     if (authorization) {
       const user = jwt.verify(authorization, process.env.JWT_SECRET);
-      return user;
+      return { user }  ;
     }
   },
-  dataSources: () => {
-    var obj = (process.env.DATASOURCE == "MOCK") ? new mockDataSource() : new pasDataSource(knexConfig);
-    return obj;
-  },
+  dataSources: () =>  datasourceObj ,
   plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
 });
 

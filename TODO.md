@@ -14,6 +14,10 @@ Project Description
 
 ### Done ✓
 
+- [x] add copies  
+- [x] get book by id  
+- [x] edit book  
+- [x] create book  
 - [x] create a user type  
 - [x] implement greet in pas  
 - [x] implement userSignIn in pas  

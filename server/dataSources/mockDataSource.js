@@ -13,8 +13,7 @@ export default class {
   ];
 
   greet(emailId) {
-    var user = this.users.find((u) => u.emailId == emailId);
-    return "Hello " + user.name;
+    return "Hello ";
   }
 
   userSignIn(input) {
