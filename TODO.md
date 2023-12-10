@@ -6,15 +6,16 @@ Project Description
 
 ### Todo
 
+- [ ] ignore node_modules  
 - [ ] change to typescript  
 - [ ] change the database to postgres  
 
 ### In Progress
 
-- [ ] setup react and tailwind  
 
 ### Done ✓
 
+- [x] setup react and tailwind  
 - [x] add copies  
 - [x] get book by id  
 - [x] edit book  
