@@ -11,6 +11,7 @@ Project Description
 
 ### In Progress
 
+- [ ] setup react and tailwind  
 
 ### Done ✓
 

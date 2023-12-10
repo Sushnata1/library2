@@ -48,12 +48,18 @@ export default class extends SQLDataSource {
     return await this.knex("book").select().where({ Id }).first();
   }
   async editBook(input, Id, user) {
+    if (user.type != "admin") {
+      throw new Error("Book not added. Only admins can add books");
+    }
     var a = await this.knex("book")
       .where({ Id })
       .update({ ...input, added_by: user.emailId });
     return "Book edited successfully";
   }
   async addCopies(copies, Id, user) {
+    if (user.type != "admin") {
+      throw new Error("Book not added. Only admins can add books");
+    }
     var book =  await this.knex("book").select().where({ Id }).first();
     copies = parseInt(book.copies) + copies;
     console.log(copies);
