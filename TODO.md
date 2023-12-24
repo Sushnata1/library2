@@ -6,8 +6,8 @@ Project Description
 
 ### Todo
 
-- [ ] ignore node_modules  
-- [ ] change to typescript  
+- [ ] connect to client to graphql  
+- [ ] change server files to typescript  
 - [ ] change the database to postgres  
 
 ### In Progress
@@ -15,6 +15,9 @@ Project Description
 
 ### Done ✓
 
+- [x] ignore node_modules  
+- [x] make login page  
+- [x] make the dashboard page  
 - [x] setup react and tailwind  
 - [x] add copies  
 - [x] get book by id  
