@@ -12,10 +12,10 @@ function BooksForAdmin() {
   if (loading) {
     output = "Loading . . .";
   }
-  else if (error) {
+  if (error) {
     output = `Error : ${error.message}`;
   }
-  else {
+  if (data) {
     output = data?.books?.map(book => <Book key={book.Id} book={book} />);
   }
   return (

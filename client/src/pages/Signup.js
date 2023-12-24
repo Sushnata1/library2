@@ -1,8 +1,14 @@
+import { useMutation } from "@apollo/client";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { SIGNUP_USER } from "../queries";
 export default function Signup() {
+  var output;
   const [user, setUser] = useState({});
-
+  const [signupUser, { data, loading, error }] = useMutation(SIGNUP_USER);
+  if (loading) {
+    return <h1>Loading . . .</h1> ;
+  }
   const handleChange = (e) => {
     setUser({
       ...user,
@@ -12,10 +18,14 @@ export default function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(user);
+    signupUser({ variables: { input: { ...user, type: "admin" } } });
   };
   return (
     <div className="container">
+      {error && <div className="bg-red-500 text-gray-50">{error.message}</div>}
+      {data && (
+        <div className="bg-green-500 text-gray-50">{data?.userSignUp}</div>
+      )}
       <h2>Signup!!</h2>
       <form onSubmit={handleSubmit}>
         <input
