@@ -17,7 +17,7 @@ export default class extends SQLDataSource {
   async userSignIn(input) {
     var user = await this.knex("users")
       .select()
-      .where("emailId", input.emailId)
+      .where("emailid", input.emailid)
       .first();
     var isPassWordCorrect = bcrypt.compare(input.password, user.password);
     if (isPassWordCorrect) {
@@ -28,7 +28,8 @@ export default class extends SQLDataSource {
     }
   }
   async getUsers() {
-    return await this.knex("users").select();
+    let result = await this.knex("users").select();
+    return result;
   }
   async addBook(input, user,copies) {
     if (user.type != "admin") {
@@ -37,23 +38,23 @@ export default class extends SQLDataSource {
     var a = await this.knex("book").insert({
       ...input,
       copies,
-      added_by: user.emailId,
+      added_by: user.emailid,
     });
     return "Book added successfully";
   }
   async getBooks() {
     return await this.knex("book").select();
   }
-  async getBook(Id) {
-    return await this.knex("book").select().where({ Id }).first();
+  async getBook(id) {
+    return await this.knex("book").select().where({ id }).first();
   }
-  async editBook(input, Id, user) {
+  async editBook(input, id, user) {
     if (user.type != "admin") {
       throw new Error("Book not added. Only admins can add books");
     }
     var a = await this.knex("book")
-      .where({ Id })
-      .update({ ...input, added_by: user.emailId });
+      .where({ id })
+      .update({ ...input, added_by: user.emailid });
     return "Book edited successfully";
   }
   async addCopies(copies, Id, user) {
@@ -64,7 +65,7 @@ export default class extends SQLDataSource {
     copies = parseInt(book.copies) + copies;
     console.log(copies);
     var a = await this.knex("book")
-      .where({ Id })
+      .where({ id })
       .update({ copies, added_by: user.emailId });
     return "Copies of "+book.name+" added successfully";
   }

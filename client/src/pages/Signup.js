@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { SIGNUP_USER } from "../queries";
 export default function Signup() {
-  var output;
   const [user, setUser] = useState({});
   const [signupUser, { data, loading, error }] = useMutation(SIGNUP_USER);
   if (loading) {

@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 function Login() {
   const navigate = useNavigate();
   const [user, setUser] = useState({});
-  const [loginUser, { loading, data, error }] = useMutation(LOGIN_USER, {
+  const [loginUser, { loading, error }] = useMutation(LOGIN_USER, {
     onCompleted: (data) => {
       localStorage.setItem("token", data?.userSignIn?.token);
       navigate("/dashboard");

@@ -1,36 +1,58 @@
 import dotenv from "dotenv";
 dotenv.config();
 
+import mockDataSource from "./dataSources/mockDataSource.js";
+import pasDataSource from "./dataSources/pasDataSource.js";
+
+let config = process.env;
+
+const knexConfig = {
+  client: "pg",
+  connection: {
+    host: config["DB_HOST"],
+    port: config["DB_PORT"],
+    user: config["DB_USER"],
+    database: config["DB_NAME"],
+    password: config["DB_PASSWORD"],
+  },
+  useNullAsDefault: true,
+};
+
+var dataSources =
+  process.env.DATASOURCE == "MOCK"
+    ? new mockDataSource()
+    : new pasDataSource(knexConfig);
+
 export default {
     Query:{
-        greet: (_, __, { user, dataSources }) => {
+        greet: (_, __, { user }) => {
             return dataSources.greet(user);
         },
-        users: (_,__,{dataSources}) => {
+        users: () => {
             return dataSources.getUsers();
         },
-        books: (_, __, { dataSources }) => {
+        books: () => {
             return dataSources.getBooks();
         },
-        book: (_, {Id}, { dataSources }) => {
+        book: (_, {Id}) => {
             return dataSources.getBook(Id);
         }
     },
     Mutation: {
-        userSignIn: (_,{input},{dataSources}) => {
+        userSignIn: (_,{input}) => {
             return dataSources.userSignIn(input);
         },
-        userSignUp: (_, { input }, { dataSources }) => {
+        userSignUp: (_, { input }) => {
             return dataSources.userSignUp(input);
         },
-        addBook: (_, { input,copies }, { user, dataSources }) => {
+        addBook: (_, { input,copies }, { user}) => {
             return dataSources.addBook(input,user,copies);
         },
-        editBook: (_, { input, Id }, { user, dataSources }) => {
-            return dataSources.editBook(input, Id, user);
+        editBook: (_, { input, Id }, { user }) => {
+            return dataSources.editBook(input, id, user);
         },
-        addCopies: (_, { copies, Id }, { user, dataSources }) => {
-            return dataSources.addCopies(copies, Id, user);
+        addCopies: (_, { copies, Id }, { user}) => {
+            return dataSources.addCopies(copies, id, user);
         }
     }
 }

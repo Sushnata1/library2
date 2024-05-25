@@ -1,7 +1,7 @@
 import { gql } from "apollo-server";
 export default gql`
   input UserSignInInput {
-    emailId: String!
+    emailid: String!
     password: String!
   }
   type UserSignInOutput {
@@ -10,19 +10,19 @@ export default gql`
 
   input UserInput {
     name: String
-    emailId: ID!
+    emailid: ID!
     password: String!
     type: String!
   }
   type User {
     name: String
-    emailId: ID!
+    emailid: ID!
     password: String!
     type: String!
   }
 
   type Book{
-    Id: ID!
+    id: ID!
     name: String!
     author: String!
     added_by: String!
