@@ -7,15 +7,18 @@ import pasDataSource from "./dataSources/pasDataSource.js";
 let config = process.env;
 
 const knexConfig = {
-  client: "pg",
+  client: 'sqlite3',//"pg",
   connection: {
+      filename: 'dataSources/library2db.db'
+    /*
     host: config["DB_HOST"],
     port: config["DB_PORT"],
     user: config["DB_USER"],
     database: config["DB_NAME"],
     password: config["DB_PASSWORD"],
+    */
   },
-  useNullAsDefault: true,
+  //useNullAsDefault: true,
 };
 
 var dataSources =

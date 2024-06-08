@@ -44,6 +44,6 @@ export default gql`
     greet: String
     users: [User]
     books: [Book]
-    book(Id:Int): Book
+    book(Id:Int=1): Book
   }
 `;
